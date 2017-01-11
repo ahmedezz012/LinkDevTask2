@@ -1,0 +1,67 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="Navwidth">300dp</dimen>
+    <dimen name="margintitletop">15dp</dimen>
+    <dimen name="NavDividerHeight">0dp</dimen>
+    <dimen name="recylerviewmargintop">10dp</dimen>
+    <dimen name="recylerviewmarginleftandright">15dp</dimen>
+    <dimen name="cardCornerRadius">10dp</dimen>
+    <dimen name="circleimagewidthandheight">80dp</dimen>
+    <dimen name="circleimagemargintopandbottom">13dp</dimen>
+    <dimen name="circleimagemarginleft">12dp</dimen>
+    <dimen name="circleimagemarginright">15dp</dimen>
+    <dimen name="cardviewlinearlayoutmarginLeft">10dp</dimen>
+    <dimen name="titletextviewwidth">170dp</dimen>
+    <dimen name="titletextviewmargintop">13dp</dimen>
+    <dimen name="linearlayoutmarginbottom">13dp</dimen>
+    <dimen name="NewstypeImageViewwidth">50dp</dimen>
+    <dimen name="NewstypeImageViewheigh">40dp</dimen>
+    <dimen name="NewstypeImageViewmarginendandright">-9dp</dimen>
+    <dimen name="NewstypeImageViewmargintop">15dp</dimen>
+    <dimen name="NewstypeImageViewelevation">2dp</dimen>
+    <dimen name="navigationlistitemlinearlayoutpaddingtop">30dp</dimen>
+    <dimen name="navigationlistitemlinearlayoutpaddingleft">30dp</dimen>
+    <dimen name="navigationlistitemimageviewwidthandheight">75dp</dimen>
+
+    <dimen name="detailcardviewmarginbottom">15dp</dimen>
+    <dimen name="detailcardviewmarginleftandright">10dp</dimen>
+    <dimen name="detailcardviewmargintop">7dp</dimen>
+    <dimen name="detailcardviewradiuscorner">8dp</dimen>
+    <dimen name="detailcardviewrelativelayoutheight">200dp</dimen>
+    <dimen name="detailcardviewtitlemarginleftandright">20dp</dimen>
+    <dimen name="detailcardviewtitlemargintop">25dp</dimen>
+    <dimen name="detailcardviewlinearlayoutheight">70dp</dimen>
+    <dimen name="detailcardviewdatemarginleft">15dp</dimen>
+    <dimen name="detailcardviewdatemarginright">10dp</dimen>
+    <dimen name="viewwidth">1dp</dimen>
+    <dimen name="viewheight">50dp</dimen>
+    <dimen name="viewmargintop">10dp</dimen>
+    <dimen name="linearlayoutoflikesmarginleftandright">10dp</dimen>
+    <dimen name="linearlayoutofviewsmarginleftandright">10dp</dimen>
+
+    <dimen name="viewiconwidth">25dp</dimen>
+    <dimen name="viewiconheight">19dp</dimen>
+    <dimen name="viewiconmarginright">10dp</dimen>
+    <dimen name="viewsmargintopandbottom">3dp</dimen>
+
+    <dimen name="discribtionpaddingrightandleft">20dp</dimen>
+    <dimen name="discribtionpaddingtop">25dp</dimen>
+    <dimen name="discribtionpaddingbottom">18dp</dimen>
+
+    <dimen name="viewwidthbold">2dp</dimen>
+
+
+    <dimen name="loginbuttonslinearlayoutmargintop">80dp</dimen>
+    <dimen name="loginbuttonslinearlayoutmarginbottom">88dp</dimen>
+    <dimen name="loginbuttonslinearlayoutmarginleftandright">20dp</dimen>
+    <dimen name="imglogopaddingtop">20dp</dimen>
+    <dimen name="loginbuttomnsmarginbottom">20dp</dimen>
+    <dimen name="navheaderheight">140dp</dimen>
+    <dimen name="navheadertxtviewmarginbottom">10dp</dimen>
+    <dimen name="navheadertxtviewmarginleft">10dp</dimen>
+    <dimen name="navheadertxtviewmargintop">15dp</dimen>
+    <dimen name="buttonscornerradius">5dp</dimen>
+    <dimen name="socialbuttonslinearlayoutpaddingleftandright">16dp</dimen>
+</resources>

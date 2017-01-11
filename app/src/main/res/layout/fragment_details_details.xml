@@ -1,0 +1,167 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Fragment_Details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.fragments.Fragment_Details">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/detailcardviewmarginbottom"
+                android:layout_marginLeft="@dimen/detailcardviewmarginleftandright"
+                android:layout_marginRight="@dimen/detailcardviewmarginleftandright"
+                android:layout_marginTop="@dimen/detailcardviewmargintop"
+                card_view:cardBackgroundColor="@color/cardviewbg"
+                card_view:cardCornerRadius="@dimen/detailcardviewradiuscorner"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/detailcardviewrelativelayoutheight">
+
+                        <com.joooonho.SelectableRoundedImageView
+                            android:id="@+id/imgnewsImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/news_image_placeholder"
+                            app:sriv_left_top_corner_radius="@dimen/detailcardviewradiuscorner"
+                            app:sriv_right_top_corner_radius="@dimen/detailcardviewradiuscorner" />
+
+                        <TextView
+                            android:id="@+id/txttitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/margintitletop"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:typeface="sans" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtDate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/detailcardviewdatemarginleft"
+                            android:layout_marginRight="@dimen/detailcardviewdatemarginright"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <View
+                            android:layout_width="@dimen/viewwidth"
+                            android:layout_height="@dimen/viewheight"
+                            android:layout_marginBottom="@dimen/viewmargintop"
+                            android:layout_marginTop="@dimen/viewmargintop"
+                            android:background="@color/viewcolor" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/linearlayoutoflikesmarginleftandright"
+                            android:layout_marginRight="@dimen/linearlayoutoflikesmarginleftandright"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/txtLikes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/likeclicked"
+                                android:drawablePadding="@dimen/drawablepadding"
+                                android:gravity="center"
+                                android:textColor="@color/likestextcolor"
+                                android:textSize="10sp"
+                                android:typeface="sans" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="@dimen/viewwidth"
+                            android:layout_height="@dimen/viewheight"
+                            android:layout_marginBottom="@dimen/viewmargintop"
+                            android:layout_marginTop="@dimen/viewmargintop"
+                            android:background="@color/viewcolor" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/linearlayoutofviewsmarginleftandright"
+                            android:layout_marginRight="@dimen/linearlayoutofviewsmarginleftandright"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/txtViews"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/viewsmargintopandbottom"
+                                android:layout_marginTop="@dimen/viewsmargintopandbottom"
+                                android:drawableLeft="@drawable/views_icon"
+                                android:drawablePadding="@dimen/drawablepadding"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@android:color/white"
+                                android:textSize="10sp"
+                                android:typeface="sans" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtdescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/discribtionpaddingbottom"
+                        android:paddingLeft="@dimen/discribtionpaddingrightandleft"
+                        android:paddingRight="@dimen/discribtionpaddingrightandleft"
+                        android:paddingTop="@dimen/discribtionpaddingtop"
+                        android:textColor="@android:color/black"
+                        android:typeface="sans" />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <include
+                android:id="@+id/load_layout"
+                layout="@layout/progress_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

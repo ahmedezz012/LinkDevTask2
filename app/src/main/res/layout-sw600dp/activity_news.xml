@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navdrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="horizontal"
+    tools:context=".app.activities.Activity_News">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/maintoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/fragment_main_main"
+                class="com.ezz.linkdevtask.app.fragments.Fragment_news"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                tools:layout="@layout/fragment_news_news"></fragment>
+
+            <View
+                android:layout_width="@dimen/viewwidthbold"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary" />
+
+            <FrameLayout
+                android:id="@+id/fragment_main_details_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"></FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                layout="@layout/navheader"
+                android:layout_width="@dimen/Navwidth"
+                android:layout_height="@dimen/navheaderheight"></include>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lstnavitems"
+                android:layout_width="@dimen/Navwidth"
+                android:layout_height="match_parent"
+                android:background="@color/navbg"
+                android:divider="@null"
+                android:dividerHeight="@dimen/NavDividerHeight"></android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/btnlogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/logout" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.DrawerLayout>

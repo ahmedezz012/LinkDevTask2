@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="@color/cardviewbg"
+            card_view:cardCornerRadius="@dimen/cardCornerRadius">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgnew"
+                    android:layout_width="@dimen/circleimagewidthandheight"
+                    android:layout_height="@dimen/circleimagewidthandheight"
+                    android:layout_marginBottom="@dimen/circleimagemargintopandbottom"
+                    android:layout_marginLeft="@dimen/circleimagemarginleft"
+                    android:layout_marginRight="@dimen/circleimagemarginright"
+                    android:layout_marginTop="@dimen/circleimagemargintopandbottom"
+                    android:src="@drawable/news_image_placeholder"
+                    app:civ_border_color="@color/colorPrimary"
+                    app:civ_border_width="1dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/cardviewlinearlayoutmarginLeft"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtNewTitle"
+                        android:layout_width="@dimen/titletextviewwidth"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/titletextviewmargintop"
+                        android:layout_weight="3"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        android:typeface="sans" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/linearlayoutmarginbottom"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtNewDate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <TextView
+                            android:id="@+id/txtNewLikes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            android:typeface="sans"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/txtNewViews"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            android:typeface="sans"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgNewType"
+        android:layout_width="@dimen/NewstypeImageViewwidth"
+        android:layout_height="@dimen/NewstypeImageViewheigh"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginEnd="@dimen/NewstypeImageViewmarginendandright"
+        android:layout_marginRight="@dimen/NewstypeImageViewmarginendandright"
+        android:layout_marginTop="@dimen/NewstypeImageViewmargintop"
+        android:elevation="@dimen/NewstypeImageViewelevation" />
+</RelativeLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "420485141726",
+    "project_id": "linkdevtask"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420485141726:android:db9f125ae47ecf93",
+        "android_client_info": {
+          "package_name": "com.ezz.linkdevtask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420485141726-ldk0fp4fm7trsrac4fjjriff45l1p9a5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ezz.linkdevtask",
+            "certificate_hash": "032C910944CED0EC05CBF0A5F1B8FFB0598999D1"
+          }
+        },
+        {
+          "client_id": "420485141726-70i28g1empl08heeta0j0gt4i011ukdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABjpa6hSCpFJzppTKdJFo3xJgtzf3Zouo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
