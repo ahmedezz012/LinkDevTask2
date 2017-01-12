@@ -27,5 +27,6 @@
     <string name="TWITTER_SECRET">3MzVv47a1lWVZDOaH7h5xKOuhtlRrkOXfSnvNmhCzZV0bG2CxT</string>
     <string name="logout">Log out</string>
     <string name="server_client_id">420485141726-70i28g1empl08heeta0j0gt4i011ukdd.apps.googleusercontent.com</string>
+    <string name="canceled">Operation Canceled</string>
 
 </resources>

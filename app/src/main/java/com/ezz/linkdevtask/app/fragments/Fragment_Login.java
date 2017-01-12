@@ -1,6 +1,4 @@
 package com.ezz.linkdevtask.app.fragments;
-
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.ezz.linkdevtask.R;
 import com.ezz.linkdevtask.app.activities.Activity_News;
@@ -29,17 +28,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
-import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Arrays;
 
 
@@ -124,6 +119,8 @@ public class Fragment_Login extends Fragment {
                 email = account.getEmail();
                 addusernameandemailtosharedpref();
             }
+            else
+                DisplayErroToast(getString(R.string.error));
         }
     }
 
@@ -154,11 +151,12 @@ public class Fragment_Login extends Fragment {
 
         @Override
         public void onCancel() {
+            DisplayErroToast(getString(R.string.canceled));
         }
 
         @Override
         public void onError(FacebookException error) {
-
+            DisplayErroToast(getString(R.string.error));
         }
     };
 
@@ -190,12 +188,13 @@ public class Fragment_Login extends Fragment {
         public void success(Result<TwitterSession> result) {
             username = result.data.getUserName();
             addusernameandemailtosharedpref();
-            TwitterAuthClient authClient = new TwitterAuthClient();
-            authClient.requestEmail(Twitter.getSessionManager().getActiveSession(),stringCallback);
+         //   TwitterAuthClient authClient = new TwitterAuthClient();
+           // authClient.requestEmail(Twitter.getSessionManager().getActiveSession(),stringCallback);
         }
 
         @Override
         public void failure(TwitterException exception) {
+            DisplayErroToast(getString(R.string.error));
         }
     };
     Callback<String> stringCallback=new Callback<String>() {
@@ -208,7 +207,8 @@ public class Fragment_Login extends Fragment {
         public void failure(TwitterException exception) {
         }
     };
-    View.OnClickListener btntwiiterloginclick=new View.OnClickListener() {
+    View.OnClickListener btntwiiterloginclick=new View.OnClickListener()
+    {
        @Override
        public void onClick(View v) {
            btnOriginaltwiiterlogin.performClick();
@@ -232,5 +232,9 @@ public class Fragment_Login extends Fragment {
         Intent intent = new Intent(getActivity(), Activity_News.class);
         startActivity(intent);
         getActivity().finish();
+    }
+    void DisplayErroToast(String s)
+    {
+        Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
     }
 }
