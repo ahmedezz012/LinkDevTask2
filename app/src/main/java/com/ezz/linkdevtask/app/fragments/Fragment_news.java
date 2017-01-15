@@ -37,9 +37,9 @@ public class Fragment_news extends Fragment {
     Services services;
     NewSelectedListener newItemSelectedListener;
     RelativeLayout rlprogressbar;
+
     public Fragment_news() {
     }
-
 
 
     @Override
@@ -51,7 +51,7 @@ public class Fragment_news extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_news_news, container, false);
+        View v = inflater.inflate(R.layout.fragment_news, container, false);
         rlprogressbar = (RelativeLayout) v.findViewById(R.id.load_layout);
         newslistRecyclerView = (RecyclerView) v.findViewById(R.id.newslistRecyclerView);
         return v;
@@ -61,7 +61,7 @@ public class Fragment_news extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         news = new ArrayList<>();
-        recyclerViewNewsAdapter = new RecyclerView_News_Adapter(getActivity(),news,newItemSelectedListener);
+        recyclerViewNewsAdapter = new RecyclerView_News_Adapter(getActivity(), news, newItemSelectedListener);
         newslistRecyclerView.setAdapter(recyclerViewNewsAdapter);
         newslistRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         services = Services.getInstance(getActivity());
@@ -73,19 +73,16 @@ public class Fragment_news extends Fragment {
         getDataRequest();
     }
 
-    public void getDataRequest()
-    {
+    public void getDataRequest() {
         rlprogressbar.setVisibility(View.VISIBLE);
-        if(Utilities.CheckIfApplicationIsConnected(getActivity())) {
+        if (Utilities.CheckIfApplicationIsConnected(getActivity())) {
             try {
                 services.makeRequestTogetListNews(response, error);
-            }catch (Exception exc)
-            {
-                Toast.makeText(getActivity(),getString(R.string.error),Toast.LENGTH_LONG).show();
+            } catch (Exception exc) {
+                Toast.makeText(getActivity(), getString(R.string.error), Toast.LENGTH_LONG).show();
             }
-        }
-        else
-            Utilities.NetworkError(rlprogressbar,getActivity());
+        } else
+            Utilities.NetworkError(rlprogressbar, getActivity());
 
     }
 
@@ -101,7 +98,7 @@ public class Fragment_news extends Fragment {
     Response.ErrorListener error = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Utilities.NetworkError(rlprogressbar,getActivity());
+            Utilities.NetworkError(rlprogressbar, getActivity());
         }
     };
 

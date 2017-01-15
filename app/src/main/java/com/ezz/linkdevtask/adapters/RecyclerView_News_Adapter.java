@@ -54,7 +54,6 @@ public class RecyclerView_News_Adapter extends RecyclerView.Adapter<RecyclerView
             this.arrayList = arrayList;
             notifyDataSetChanged();
         }
-
     }
 
     @Override

@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
-                tools:layout="@layout/fragment_news_news"></fragment>
+                tools:layout="@layout/fragment_news"></fragment>
 
             <View
                 android:layout_width="@dimen/viewwidthbold"

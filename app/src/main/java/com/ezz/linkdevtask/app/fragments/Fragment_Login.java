@@ -1,10 +1,10 @@
 package com.ezz.linkdevtask.app.fragments;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,7 @@ import com.ezz.linkdevtask.R;
 import com.ezz.linkdevtask.app.activities.Activity_News;
 import com.ezz.linkdevtask.constants.Constants;
 import com.ezz.linkdevtask.helpers.GoogleServices;
+import com.ezz.linkdevtask.helpers.Utilities;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -33,18 +34,20 @@ import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.Arrays;
 
 
 public class Fragment_Login extends Fragment {
 
     LoginButton btnOriginalfblogin;
-    Button btnfacebooklogin,btntwiiterlogin,btngooglelogin;
+    Button btnfacebooklogin, btntwiiterlogin, btngooglelogin;
     CallbackManager callbackManager;
 
-    String email,username;
+    String email, username;
 
     TwitterLoginButton btnOriginaltwiiterlogin;
 
@@ -54,8 +57,6 @@ public class Fragment_Login extends Fragment {
     SignInButton btnOriginalgooglelogin;
     int requestcode = 1000;
 
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editorsharedpreference;
 
     public Fragment_Login() {
         // Required empty public constructor
@@ -65,14 +66,13 @@ public class Fragment_Login extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         googleSignInOptions = GoogleServices.getgoogleSignInOptions();
-        googleApiClient =  GoogleServices.getgoogleApiClient(getActivity(),googleSignInOptions);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        editorsharedpreference = sharedPreferences.edit();
+        googleApiClient = GoogleServices.getgoogleApiClient(getActivity(), googleSignInOptions);
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment__login__login,container,false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         btnOriginalfblogin = (LoginButton) view.findViewById(R.id.btnOriginalfblogin);
         btnfacebooklogin = (Button) view.findViewById(R.id.btnfacebooklogin);
@@ -97,7 +97,7 @@ public class Fragment_Login extends Fragment {
 
         callbackManager = CallbackManager.Factory.create();
 
-        btnOriginalfblogin.registerCallback(callbackManager,facebookCallback);
+        btnOriginalfblogin.registerCallback(callbackManager, facebookCallback);
         btnfacebooklogin.setOnClickListener(btnfacebookloginclick);
         //twitter
         btntwiiterlogin.setOnClickListener(btntwiiterloginclick);
@@ -108,19 +108,21 @@ public class Fragment_Login extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode,resultCode,data);
-        btnOriginaltwiiterlogin.onActivityResult(requestCode,resultCode,data);
-        if(requestCode == requestcode)
-        {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        btnOriginaltwiiterlogin.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == requestcode) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                GoogleSignInAccount account = result.getSignInAccount();
-                username = account.getDisplayName();
-                email = account.getEmail();
-                addusernameandemailtosharedpref();
-            }
-            else
-                DisplayErroToast(getString(R.string.error));
+            if (result != null) {
+                if (result.isSuccess()) {
+                    GoogleSignInAccount account = result.getSignInAccount();
+                    username = account.getDisplayName();
+                    email = account.getEmail();
+                    Utilities.addUsernameandEmailtosharedpref(getActivity(), email, username);
+                    gotoActivity_News();
+                } else
+                    displayErroToast(result.getStatus() + "");
+            } else
+                displayErroToast(getString(R.string.error));
         }
     }
 
@@ -137,67 +139,81 @@ public class Fragment_Login extends Fragment {
     }
 
 
-// facebook listeners
-    FacebookCallback<LoginResult> facebookCallback=new FacebookCallback<LoginResult>()
-    {
+    // facebook listeners
+    FacebookCallback<LoginResult> facebookCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
-            GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),graphJSONObjectCallback);
-            Bundle parameters = new Bundle();
-            parameters.putString(Constants.fields, Constants.emailfield+" , "+Constants.namefield);
-            request.setParameters(parameters);
-            request.executeAsync();
+            if (loginResult != null) {
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), graphJSONObjectCallback);
+                Bundle parameters = new Bundle();
+                parameters.putString(Constants.fields, Constants.emailfield + "," + Constants.namefield);
+                request.setParameters(parameters);
+                request.executeAsync();
+            } else {
+                displayErroToast(getString(R.string.error));
+            }
         }
 
         @Override
         public void onCancel() {
-            DisplayErroToast(getString(R.string.canceled));
+            displayErroToast(getString(R.string.canceled));
         }
 
         @Override
         public void onError(FacebookException error) {
-            DisplayErroToast(getString(R.string.error));
+            displayErroToast(getString(R.string.error));
         }
     };
 
-    GraphRequest.GraphJSONObjectCallback graphJSONObjectCallback = new GraphRequest.GraphJSONObjectCallback()
-    {
+    GraphRequest.GraphJSONObjectCallback graphJSONObjectCallback = new GraphRequest.GraphJSONObjectCallback() {
         @Override
         public void onCompleted(JSONObject object, GraphResponse response) {
-            try {
-                email=object.getString(Constants.emailfield);
-                username=object.getString(Constants.namefield);
-                addusernameandemailtosharedpref();
+            if (object != null) {
+                try {
+                    username = object.getString(Constants.namefield);
+                } catch (JSONException e) {
+                    displayErroToast(e.getMessage());
+                }
+                try {
+                    email = object.getString(Constants.emailfield);
 
-            } catch (JSONException e) {
-            }
+                } catch (JSONException e) {
+                    displayErroToast(e.getMessage());
+                }
+                Utilities.addUsernameandEmailtosharedpref(getActivity(), email, username);
+                gotoActivity_News();
+            } else
+                displayErroToast(getString(R.string.error));
         }
     };
 
-    View.OnClickListener btnfacebookloginclick=new View.OnClickListener() {
+    View.OnClickListener btnfacebookloginclick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             btnOriginalfblogin.performClick();
         }
     };
-//////
+    //////
     //twitter listeneres
-    Callback<TwitterSession> twitterSessionCallback = new Callback<TwitterSession>()
-    {
+    Callback<TwitterSession> twitterSessionCallback = new Callback<TwitterSession>() {
         @Override
         public void success(Result<TwitterSession> result) {
-            username = result.data.getUserName();
-            addusernameandemailtosharedpref();
-         //   TwitterAuthClient authClient = new TwitterAuthClient();
-           // authClient.requestEmail(Twitter.getSessionManager().getActiveSession(),stringCallback);
+            if (result != null) {
+                username = result.data.getUserName();
+                Utilities.addUsernameandEmailtosharedpref(getActivity(), email, username);
+                gotoActivity_News();
+            } else
+                displayErroToast(getString(R.string.error));
+            //   TwitterAuthClient authClient = new TwitterAuthClient();
+            // authClient.requestEmail(Twitter.getSessionManager().getActiveSession(),stringCallback);
         }
 
         @Override
         public void failure(TwitterException exception) {
-            DisplayErroToast(getString(R.string.error));
+            displayErroToast(getString(R.string.error));
         }
     };
-    Callback<String> stringCallback=new Callback<String>() {
+    Callback<String> stringCallback = new Callback<String>() {
         @Override
         public void success(Result<String> result) {
             email = result.data;
@@ -207,34 +223,29 @@ public class Fragment_Login extends Fragment {
         public void failure(TwitterException exception) {
         }
     };
-    View.OnClickListener btntwiiterloginclick=new View.OnClickListener()
-    {
-       @Override
-       public void onClick(View v) {
-           btnOriginaltwiiterlogin.performClick();
-       }
-   };
+    View.OnClickListener btntwiiterloginclick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            btnOriginaltwiiterlogin.performClick();
+        }
+    };
     //////
     //google button listener
     View.OnClickListener btngoogleloginclick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-            startActivityForResult(signInIntent,requestcode);
+            startActivityForResult(signInIntent, requestcode);
         }
     };
 
-    void addusernameandemailtosharedpref()
-    {
-        editorsharedpreference.putString(Constants.emailprefkey,email);
-        editorsharedpreference.putString(Constants.nameprefkey,username);
-        editorsharedpreference.commit();
+    void gotoActivity_News() {
         Intent intent = new Intent(getActivity(), Activity_News.class);
         startActivity(intent);
         getActivity().finish();
     }
-    void DisplayErroToast(String s)
-    {
-        Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
+
+    void displayErroToast(String s) {
+        Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
     }
 }

@@ -20,6 +20,6 @@
         class="com.ezz.linkdevtask.app.fragments.Fragment_Details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_details_details"></fragment>
+        tools:layout="@layout/fragment_details"></fragment>
 
 </LinearLayout>

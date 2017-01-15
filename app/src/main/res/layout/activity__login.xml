@@ -14,7 +14,7 @@
         class="com.ezz.linkdevtask.app.fragments.Fragment_Login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment__login__login"></fragment>
+        tools:layout="@layout/fragment_login"></fragment>
 
 
 </LinearLayout>

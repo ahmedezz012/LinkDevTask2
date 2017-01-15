@@ -12,6 +12,7 @@ import com.ezz.linkdevtask.R;
 public class Activity_Details extends BaseActivity {
 
     Toolbar maintoolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

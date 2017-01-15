@@ -23,7 +23,7 @@
             class="com.ezz.linkdevtask.app.fragments.Fragment_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/fragment_news_news"></fragment>
+            tools:layout="@layout/fragment_news"></fragment>
     </LinearLayout>
 
     <ScrollView
